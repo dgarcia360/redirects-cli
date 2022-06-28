@@ -1,0 +1,21 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "redirects_cli"
+author = "David Garcia"
+author-email = "hi@davidgarcia.dev"
+home-page = "https://github.com/dgarcia360/redirects_cli"
+description-file = "README.md"
+requires-python = ">=3.7"
+requires = ["typer >= 0.3", "colorama >= 0.4"]
+
+[tool.flit.scripts]
+redirects-cli = "redirects_cli.__main__:main"
+
+[tool.flit.metadata.requires-extra]
+test = [
+  "pre-commit",
+  "pytest",
+]
