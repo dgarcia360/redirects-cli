@@ -41,10 +41,10 @@ This file must follow this syntax:
 # Example
 
 # internal link example
-/original-path/page-a: /new-path/page-a
+/original-path/page-a.html: /new-path/page-a.html
 
 # external link example
-/original-path/page-b: https://example.local
+/original-path/page-b.html: https://example.local
 ```
 
 2. Run the command:
