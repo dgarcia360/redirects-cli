@@ -67,7 +67,7 @@ my-app/
 ## Contributing
 
 Contributions are welcome and appreciated!
-If you want to enhance the boilerplate, please read [CONTRIBUTING.md](CONTRIBUTING.md) file first.
+If you want to enhance the CLI, please read [CONTRIBUTING.md](CONTRIBUTING.md) file first.
 
 ## License
 
