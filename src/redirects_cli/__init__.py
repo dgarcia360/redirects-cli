@@ -5,4 +5,4 @@ Generates static redirections from a YAML file.
 """
 
 __app_name__ = "redirects-cli"
-__version__ = "0.1.0"
+__version__ = "0.1.1"

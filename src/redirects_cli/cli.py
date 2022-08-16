@@ -17,12 +17,12 @@ def _version_callback(value: bool) -> None:
 
 def _build_redirect_body(path: str) -> str:
     html = """
-        <html>
+    <html>
         <head>
-        <meta http-equiv="refresh" content="0; url={path}">
+            <meta http-equiv="refresh" content="0; url={path}">
         </head>
-        </html>
-        """.format(
+    </html>
+    """.format(
         path=path
     )
     return html
@@ -58,9 +58,9 @@ def fromFile(
             else:
                 typer.secho(
                     "The redirections file is empty.",
-                    fg=typer.colors.RED,
+                    fg=typer.colors.YELLOW,
                 )
-                raise typer.Exit(1)
+                raise typer.Exit()
     except Exception:
         typer.secho(
             "The redirections file does not exist.",
