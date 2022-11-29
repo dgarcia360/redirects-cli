@@ -70,7 +70,7 @@ To generate static redirects from a YAML file:
 To create a single redirect, you can run the command:
 
 ```
-redirects-cli --output-file index.html  --redirect-to https://davidgarcia.dev
+redirects-cli create --output-file index.html  --redirect-to https://davidgarcia.dev
 ```
 
 This command creates a 301 redirect to `https://davidgarcia.dev`in the file `index.html`.
