@@ -16,13 +16,7 @@ def _version_callback(value: bool) -> None:
 
 
 def _build_redirect_body(path: str) -> str:
-    html = """
-    <html>
-        <head>
-            <meta http-equiv="refresh" content="0; url={path}">
-        </head>
-    </html>
-    """.format(
+    html = """<html><head><meta http-equiv="refresh" content="0; url={path}"></head></html>""".format(
         path=path
     )
     return html
@@ -41,8 +35,8 @@ def fromFile(
         ".",
         "--output-dir",
         "-o",
-        prompt="directory path to save the static redirections?",
-        help="Path of the directory to save the static redirections.",
+        prompt="directory path to save the static redirects?",
+        help="Path of the directory to save the static redirects.",
     ),
 ) -> None:
     try:
@@ -54,20 +48,48 @@ def fromFile(
                     os.makedirs(os.path.dirname(target_path), exist_ok=True)
                     with open(os.path.join(target_path), "w+") as t_file:
                         t_file.write(_build_redirect_body(redirect_to))
-                typer.secho("Redirections created.", fg=typer.colors.GREEN)
+                typer.secho("Redirects created.", fg=typer.colors.GREEN)
             else:
                 typer.secho(
-                    "The redirections file is empty.",
+                    "The redirects file is empty.",
                     fg=typer.colors.YELLOW,
                 )
-                raise typer.Exit()
     except Exception:
         typer.secho(
-            "The redirections file does not exist.",
+            "The redirects file does not exist.",
             fg=typer.colors.RED,
         )
         raise typer.Exit(1)
 
+@app.command()
+def create(
+    redirect_to: str = typer.Option(
+        "#",
+        "--redirect-to",
+        "-r",
+        prompt="redirects path?",
+        help="URL or relative path to redirect to.",
+    ),
+
+    out_file: str = typer.Option(
+        "index.html",
+        "--output-file",
+        "-o",
+        prompt="file path to save the redirects?",
+        help="Path of the file to save the static redirects.",
+    ),
+) -> None:
+    try:
+        os.makedirs(os.path.dirname(out_file), exist_ok=True)
+        with open(os.path.join(out_file), "w+") as t_file:
+            t_file.write(_build_redirect_body(redirect_to))
+            typer.secho("Redirects created.", fg=typer.colors.GREEN)
+    except Exception:
+        typer.secho(
+            "Cannot write on the output file.",
+            fg=typer.colors.RED,
+        )
+        raise typer.Exit(1)
 
 @app.callback()
 def main(

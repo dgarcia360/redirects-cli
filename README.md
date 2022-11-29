@@ -6,9 +6,9 @@ A CLI to create static redirections from a YAML file.
 
 You are relying on GitHub Pages to host your site. However, whenever you move a page from one folder to another, your users get the 404 page. 
 
-With `redirects-cli`, you can define 301 redirects for the pages you have moved  in a YAML file. Then, you can generate static redirects for each path with one command.
+With `redirects-cli`, you can define 301 redirects for the pages you have moved in a YAML file. Then, you can generate static redirects for each page with one command.
 
-In my case, I use this command in the project's CI pipelines before publishing the site to the `gh-pages` branch. If I define the redirections correctly, that means no more 404 errors!
+In my case, I use this CLI tool in the project's CI pipelines before publishing the site to the `gh-pages` branch.
 
 ## Getting started
 
@@ -26,43 +26,54 @@ pip install redirects_cli
 ### Quickstart
 
 ```
-redirects-cli fromfile --help
+redirects-cli --help
 ```
 
 ## Usage
 
-To generate static redirections from a YAML file:
+### Generate redirects from a static file
 
-1. Define the redirects in a new file named `redirections.yaml`.
-This file must follow this syntax:
+To generate static redirects from a YAML file:
 
-```
-# old_path: new_path
-# Example
+1. Define the redirects in a new file named `redirects.yaml`. This file must follow this syntax:
 
-# internal link example
-/original-path/page-a.html: /new-path/page-a.html
+    ```
+    # old_path: new_path
+    # Example
 
-# external link example
-/original-path/page-b.html: https://example.local
-```
+    # internal link example
+    /original-path/page-a.html: /new-path/page-a.html
+
+    # external link example
+    /original-path/page-b.html: https://example.local
+    ```
 
 2. Run the command:
 
-```
-redirects-cli fromfile --yaml-file redirects.yaml --output-dir html
-```
+    ```
+    redirects-cli fromfile --yaml-file redirects.yaml --output-dir html
+    ```
 
-The CLI creates the static redirections you have defined in the `redirections.yaml` file within the folder `html`. 
-For this example, it creates the following folder structure:
+    The CLI creates the static redirects you have defined in the `redirects.yaml` file within the folder `html`. 
+    For this example, it creates the following folder structure:
 
-```
-my-app/
-├─ html/
-│  ├─ original-path/page-a.html
-│  ├─ original-path/page-b.html
-├─ redirects.yaml
-```
+    ```
+    my-app/
+    ├─ html/
+    │  ├─ original-path/page-a.html
+    │  ├─ original-path/page-b.html
+    ├─ redirects.yaml
+    ```
+
+### Create a single redirect
+
+To create a single redirect, you can run the command:
+
+````
+redirects-cli --output-file index.html  --redirect-to https://davidgarcia.dev
+````
+
+This command creates a 301 redirect to `https://davidgarcia.dev`in the file `index.html`.
 
 ## Contributing
 
