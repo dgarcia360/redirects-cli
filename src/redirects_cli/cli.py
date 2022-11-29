@@ -16,7 +16,13 @@ def _version_callback(value: bool) -> None:
 
 
 def _build_redirect_body(path: str) -> str:
-    html = """<html><head><meta http-equiv="refresh" content="0; url={path}"></head></html>""".format(
+    html = """
+<html>
+    <head>
+        <meta http-equiv="refresh" content="0; url={path}">
+    </head>
+</html>
+    """.format(
         path=path
     )
     return html
@@ -61,16 +67,16 @@ def fromFile(
         )
         raise typer.Exit(1)
 
+
 @app.command()
 def create(
     redirect_to: str = typer.Option(
-        "#",
+        "/path/to/redirect",
         "--redirect-to",
         "-r",
         prompt="redirects path?",
         help="URL or relative path to redirect to.",
     ),
-
     out_file: str = typer.Option(
         "index.html",
         "--output-file",
@@ -81,6 +87,10 @@ def create(
 ) -> None:
     try:
         os.makedirs(os.path.dirname(out_file), exist_ok=True)
+    except:
+        pass
+    
+    try:
         with open(os.path.join(out_file), "w+") as t_file:
             t_file.write(_build_redirect_body(redirect_to))
             typer.secho("Redirects created.", fg=typer.colors.GREEN)
@@ -90,6 +100,7 @@ def create(
             fg=typer.colors.RED,
         )
         raise typer.Exit(1)
+
 
 @app.callback()
 def main(

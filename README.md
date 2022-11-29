@@ -4,7 +4,7 @@ A CLI to create static redirections from a YAML file.
 
 ## Why?
 
-You are relying on GitHub Pages to host your site. However, whenever you move a page from one folder to another, your users get the 404 page. 
+You are relying on GitHub Pages to host your site. However, whenever you move a page from one folder to another, your users get the 404 page.
 
 With `redirects-cli`, you can define 301 redirects for the pages you have moved in a YAML file. Then, you can generate static redirects for each page with one command.
 
@@ -54,11 +54,11 @@ To generate static redirects from a YAML file:
     redirects-cli fromfile --yaml-file redirects.yaml --output-dir html
     ```
 
-    The CLI creates the static redirects you have defined in the `redirects.yaml` file within the folder `html`. 
+    The CLI creates the static redirects you have defined in the `redirects.yaml` file within the folder `html`.
     For this example, it creates the following folder structure:
 
     ```
-    my-app/
+    my-project/
     ├─ html/
     │  ├─ original-path/page-a.html
     │  ├─ original-path/page-b.html
@@ -69,9 +69,9 @@ To generate static redirects from a YAML file:
 
 To create a single redirect, you can run the command:
 
-````
+```
 redirects-cli --output-file index.html  --redirect-to https://davidgarcia.dev
-````
+```
 
 This command creates a 301 redirect to `https://davidgarcia.dev`in the file `index.html`.
 
