@@ -87,9 +87,9 @@ def create(
 ) -> None:
     try:
         os.makedirs(os.path.dirname(out_file), exist_ok=True)
-    except:
+    except Exception:
         pass
-    
+
     try:
         with open(os.path.join(out_file), "w+") as t_file:
             t_file.write(_build_redirect_body(redirect_to))
